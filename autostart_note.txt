@@ -1,0 +1,31 @@
+
+/etc/systemd/system/autostart.service 파일 작성 내용
+
+[Unit]
+Description=My Script Service
+After=network.target
+
+[Service]
+ExecStart=/home/user/project/autonomous/autostart.sh
+WorkingDirectory=/home/user/project/autonomous
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=user
+
+[Install]
+WantedBy=multi-user.target
+
+서비스 등록
+sudo systemctl daemon-reload
+sudo systemctl enable autostart.service
+
+서비스 시작
+sudo systemctl start autostart.service
+
+서비스 상태 확인
+sudo systemctl status autostart.service
+
+실시간 로그 확인
+sudo journalctl -u autostart.service -f
+
