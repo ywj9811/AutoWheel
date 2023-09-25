@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fcntl.h>
-#include <linux/joystick.h>
+#include <linux/joystick.h> //라즈베리파이 3에 기본으로 존재하는 라이브러리
 #include <unistd.h>
 
 #include "joystick_reader.h"

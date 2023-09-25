@@ -97,11 +97,6 @@ void rplidar_detect_obstacle(bool find_obstacle)
     
     autonomous_determine_direction(start_index,count);
     // 이제 진행 방향을 결정할 수 있도록 함수 호출(어디에 장애물이 있고, 얼마나 있는지 보내줌)
-
-    // if(count > 5) {
-    //     printf("Dash filled length: %d\n", count);
-    //     printf("Start index: %d, End index: %d, angle : %d\n", start_index, end_index,end_index-start_index);
-    // }
 }
 
 // 라이다 시작하는 부분으로 정해진 방법
@@ -203,10 +198,9 @@ void* rplidar_run(void *arg)
         size_t   count = _countof(nodes);
         
         op_result = drv->grabScanDataHq(nodes, count);
-        // lidar에서 탐지한 결과를 가져온다.
-        // sl_lidar_response_measurement_node_hq_t 형태의 배열에 저장
+        // lidar에서 탐지한 결과를 가져온다. sl_lidar_response_measurement_node_hq_t 형태의 배열에 저장
 
-        if (SL_IS_OK(op_result)) { // Lidar에서 스캔 데이터를 정상적으로 받아온 경우를 확인하고 만약 Lidar 데이터를 정상적으로 받아왔다면 아래의 코드 블록을 실행
+        if (SL_IS_OK(op_result)) { // Lidar에서 스캔 데이터를 정상적으로 받아온 경우를 확인
             drv->ascendScanData(nodes, count);
             // Lidar 스캔 데이터를 처리하기 전에, 스캔 데이터를 각도 순으로 정렬하는 역할 이렇게 하면 데이터를 더 쉽게 처리할 수 있다.
 
@@ -222,7 +216,6 @@ void* rplidar_run(void *arg)
                 // Lidar의 api에 있는 데이터인 angle_z_q14를 변환하여 실제 각도를 구함
                 
                 if(theta <= theta_cnt) { 
-                    //각도를 1도 단위로 저장하는데, 정확히 1이 아니라 0.n 이렇게 나올 수 있기 때문에 이렇게 처리
                     //만약 아직 저장시점이 아니라면 continue
                     continue;
                 } else {
@@ -244,7 +237,6 @@ void* rplidar_run(void *arg)
                     // 장애물 표시
                 }
             }
-
             data[LIDAR_DETECT_ANGLE] = '\0';
             
             printf("%s\n",data);

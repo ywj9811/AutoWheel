@@ -1,4 +1,4 @@
-#include <wiringPi.h>
+#include <wiringPi.h> //이건 다운로드
 // 라즈베리파이용 c언어 라이브러리
 
 #include <stdio.h>
