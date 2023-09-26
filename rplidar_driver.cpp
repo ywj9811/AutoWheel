@@ -214,6 +214,7 @@ void* rplidar_run(void *arg)
             for (int pos = 0; pos < (int)count ; ++pos) { 
                 int theta = (nodes[pos].angle_z_q14 * 90.f) / 16384.f;
                 // Lidar의 api에 있는 데이터인 angle_z_q14를 변환하여 실제 각도를 구함
+                // 그렇게 실제 각도만 구해서 거기에 해당하는 내용만 아래 과정 (data[(theta + LIDAR_DATA_BUF_OFFSET)%360] = '-';)을 통해 data배열에 넣음
                 
                 if(theta <= theta_cnt) { 
                     //만약 아직 저장시점이 아니라면 continue
