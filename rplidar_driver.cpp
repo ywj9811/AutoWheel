@@ -229,7 +229,7 @@ void* rplidar_run(void *arg)
                     int dist = nodes[pos].dist_mm_q2/4.0f;
                     // dist_mm_q2 또한 Lidar에서 제공해주는 거리 데이터 변수
                     if(dist > LIDAR_DETECT_DIST || dist == 0) { 
-                        // 측정 범위보다 멀거나(현재 35cm) 아무것도 감지가 안된다면 진행
+                        // 측정 범위보다 멀거나(현재 35cm) 아무것도 감지가 안된다면(0) 진행
                         continue;
                     } 
                     // 넘어오면 장애물이 존재하는 것 -> true로 함
